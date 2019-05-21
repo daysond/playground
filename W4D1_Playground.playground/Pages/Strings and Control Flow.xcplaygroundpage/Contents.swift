@@ -25,13 +25,17 @@ print("Your name is \(name)")
  - Example:
  "Your name is Joe Smith, your age is 35, and your height is 175cm."
  */
+var myName = "me"
+var age = 18
+var height = 175
 
+print("my name is \(myName) and my age is \(String(age)) and height is \(String(height))")
 
 /*:
  - Experiment:
  Math calculations can be included within the "`\()`" such as adding two variables together. Try printing out a sentence using string interpolation and include a calculation.
  */
-
+print("my name is \(myName) and my age is \(String(age+99)) and height is \(String(height+89))")
 /*:
  ## Control Flow
 
@@ -51,7 +55,13 @@ if myConditional {
  - Experiment:
   Try creating your own 'if' statement that determines whether a given number is even, odd or zero.
  */
+let num = 99
 
+if num % 2 == 0 {
+    print("even")
+} else {
+    print("odd")
+}
 
 /*:
  - Experiment:
@@ -77,13 +87,30 @@ default:
  - Callout(Challenge):
  Create an if/else statement to print out the grammatically correct description of the number of bicycles there are. Declare a 'bicycleCount' variable with any number you wish then cover the conditions for zero bicycles, 1 bicycle, and more than 1 bicycle. ie: 'There are zero bicycles', 'There is 1 bicycle', 'There are 20 bicycles'
  */
+var bicycleCount = 3
 
+if bicycleCount == 0 {
+    print("zero")
+} else if bicycleCount == 1 {
+    print("one")
+} else if bicycleCount > 1 {
+    print("\(bicycleCount)")
+}
 
 /*:
  - Callout(Challenge):
  Rewrite the above Challenge as a switch statement
  */
-
+switch bicycleCount {
+case 0:
+    print("zero")
+case 1:
+    print("one")
+case let x where x > 1:
+    print("\(x)")
+default:
+    print("??")
+}
 
 /*:
  - Callout(Challenge):
@@ -93,5 +120,18 @@ default:
  - If the year can be evenly divided by 100 = Is NOT a Leap Year, unless;
  - The year is also evenly divisible by 400 = Is Leap Year
  */
+var year = 3000
 
+if year % 4 == 0 {
+    
+    if year % 400 == 0 {
+        print("leap year")
+    } else {
+        print("not leap year")
+    }
+    
+    
+} else {
+    print("not leap year")
+}
 //: [Next](@next)

@@ -23,13 +23,15 @@ namedPersonTuple.age
  - Experiment:
  Try creating your own tuple. Mix in different variable types and try mixing some parameters with names and some without. Does it still work?
  */
+var someT = (first: "hi", second: 11, 88.88)
 
 
 /*:
  - Experiment:
  Try nesting tuples within one another. Create a tuple and add a tuple as one of its items.
  */
-
+var someTT = (1,2,(3,4))
+print(someTT.2.1)
 
 /*:
  - Experiment:
@@ -52,7 +54,23 @@ for (kind, numbers) in interestingNumbers {
 To test: call your new function with eligable true and false, and print the two values
  (Hint: Use optional return value and conditional unwrapping)
  */
+func someF (name: String , age: Int, eligable: Bool) -> (String, Int)? {
 
+    if eligable {
+        return (name, age)
+    } else {
+        return nil
+    }
+}
+
+if let (a,b) = someF(name: "name", age: 22, eligable: true) {
+    print(a,b)
+}
+
+if let (c,d) = someF(name: "name2", age: 18, eligable: false) {
+    
+    print(c,d)
+}
 
 /*:
  ## Enums
@@ -63,18 +81,53 @@ To test: call your new function with eligable true and false, and print the two 
  */
 
 enum Months: Int{
-    case January = 1
+    case January  = 1
     case Feburary
     case March
     case April
-    case May, June, July, August
+    case May
+    case June
+    case July
+    case August
+    case September
+    case October
+    case November
+    case December
     //...
     
     func abbreviatedStringForm() -> String {
         switch self {
-            default:
-                return ""
+        case .January:
+            return "Jan"
+        case .Feburary:
+            return "Feb"
+        case .March:
+            return "Mar"
+        case .April:
+            return "Apr"
+        case .May:
+            return "May"
+        case .June:
+            return "Jun"
+        case .July:
+            return "Jul"
+        case .August:
+            return "Aug"
+        case .September:
+            return "Sep"
+        case .October:
+            return "Oct"
+        case .November:
+            return "Nov"
+        case .December:
+            return "Dec"
         }
+    }
+    
+    func monthsApart(month: Months) -> Int {
+        let num = abs(self.rawValue - month.rawValue)
+        return num
+        
     }
 }
 
@@ -88,24 +141,72 @@ let marchMonth = Months.March
  \
 Try removing the '= 1' from the Months enum. Now what is different?
  */
-
+Months.January.rawValue
+Months.March.rawValue
 
 /*:
  - Experiment:
  Finish the rest of the months for our `Months` enum. Then take a look at `abbreviatedStringForm()` function. Complete this function so that it returns the abbreviated form of the desired month as a String. ie: calling `Months.January.abbreviatedStringForm()` returns "Jan".
  */
 
+Months.January.abbreviatedStringForm()
 
 /*:
  - Experiment:
  Write a function within the enum that compares two months and determines how many months are they apart. For example: Comparing January to March would return to me '2', because January and March are two months apart.
  */
-
+Months.June.monthsApart(month: .May)
 
 /*:
  - Callout(Challenge):
  Create enums for the game "Rock, Paper, Scissors". Create a function within the enum that compares two hand shapes and determines the winner. Then create a function that returns ✋ , ✌️, or 👊 given rock, paper, or scissors.
 */
+enum Game {
+    
+    case Rock
+    case Paper
+    case Scissors
+    
+    func winner(them: Game) {
+        
+        if self == .Rock {
+            if them == .Paper {
+                print("They win")
+            }
+            if them == .Scissors {
+                print("you win")
+            }
+        }
+        if self == .Paper {
+            if them == .Scissors {
+                print("They win")
+            }
+            if them == .Rock {
+                print("you win")
+            }
+        }
+        if self == .Scissors {
+            if them == .Rock {
+                print("They win")
+            }
+            if them == .Paper {
+                print("you win")
+            }
+        }
+    }
+    
+    func emoji() {
+        switch self {
+        case .Rock:
+            print("👊")
+        case .Paper:
+            print("✋")
+        case .Scissors:
+            print("✌️")
+        }
+    }
+}
 
-
+Game.Rock.winner(them: .Scissors)
+Game.Rock.emoji()
 //: [Next](@next)

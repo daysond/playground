@@ -19,18 +19,27 @@ myDictionary["Principal"] = 1
  - Experiment:
  Try creating an array and dictionary using `'let'` vs `'var'` then try adding something to them. What do you notice? For the array, you can use a method called 'append' to add something to it.
  */
+var myarray = [1,2,3]
+let myletarray = [4,5,6]
+
+myarray.append(0)
+//myletarray.append(7)
 
 
 /*:
  - Experiment:
  Try creating an empty array with an explicit type `[type]`. What happens when you add a value that isn't the same type?
  */
+var thisarray:[Int] = [1]
+
+//thisarray.append(@"2")
 
 
 /*:
  - Experiment:
  Try creating an empty dictionary with an explicit type. `[keyType: valueType]`
  */
+var myDict: [String:Int]
 
 
 /*:
@@ -43,6 +52,14 @@ myDictionary["Principal"] = 1
  - reverse
  - count
  */
+var thatarray = [1,2,3,4,5,6,7]
+thatarray.append(8)
+thatarray.insert(0, at: 0)
+thatarray.remove(at: 7)
+//thatarray.removeAll()
+thatarray.reverse()
+thatarray.count
+thatarray.replaceSubrange(0...2, with: [10,11])
 
 
 /*:
@@ -52,7 +69,12 @@ myDictionary["Principal"] = 1
  - isEmpty
  - count
  */
-
+var adict = ["one": 1, "two": 2]
+print(adict["one"])
+adict.removeValue(forKey: "one")
+print(adict)
+adict.isEmpty
+adict.count
 
 /*:
  - Callout(Challenge):
@@ -60,7 +82,12 @@ myDictionary["Principal"] = 1
  
     Finally, print out each person's name from the array using their index and string interpolation
 */
+var datarray : [String] = []
+datarray.append("John")
+datarray.append("Karen")
+datarray.append("Jane")
 
+print(datarray[0],datarray[1],datarray[2])
 
 /*:
  - Callout(Challenge):
@@ -74,6 +101,12 @@ myDictionary["Principal"] = 1
  
     On the next line, add this last person's info: Bob - $45000
  */
+var finalDict: [String: Int] = [:]
 
+finalDict[datarray[0]] = 50000
+finalDict[datarray[1]] = 70000
+finalDict[datarray[2]] = 62000
+finalDict["Bob"] = 45000
 
+print(finalDict)
 //: [Next](@next)

@@ -19,12 +19,15 @@ var doubleNumberValue: Double? = nil
  - Experiment:
  Declare a non-optional variable of a `String` and set it to `nil`. What happens?
  */
-
+//var str: String = nil
+//nil cannot initialize specified type string
 
 /*:
  - Experiment:
  Declare an optional variable of a type `String` and set an initial `String` value to it. Then set it to `nil` on the next line. Does this work? Why or why not?
  */
+var str: String? = "hi"
+str = nil
 
 
 /*:
@@ -47,13 +50,14 @@ ratio * convertIntegerValue // now this works!
  - Experiment:
  Declare a `String` containing digits and try converting it to a `Double` the same way shown in the above example. What do you notice about the variable type? Hint: Use 'Option' + Mouse Click on the variable to see the type
  */
-
+var numStr = "999"
+var strDouble = Double(numStr)
 
 /*:
  - Experiment:
  With your newly converted `Double` from a `String`, try multiplying it with the 'ratio' variable. What happens?
  */
-
+ratio * strDouble!
 
 /*:
  Your newly converted `Double` value is a `Double?` which indicates we might have a double or we might have nothing.  Converting a `String` to a `Double` might fail because the `String` does not guarantee there will only be digits within it.
@@ -77,14 +81,14 @@ print("\(myOptionalDouble!)")
   - Experiment:
  Now you try! Try printing out your converted `Double?` with a force unwrap
 */
-
+print("\(strDouble!)")
 
 
 /*:
  - Experiment:
  Go back and change your `String` to something that has no digits. What happens and why?
  */
-
+// fatal error: Unexpectedly found nil while unwrapping an Optional value
 
 
 /*:
@@ -92,12 +96,16 @@ print("\(myOptionalDouble!)")
  Declare an optional variable of a type `String` and set an initial `String` value to it. Try printing it.
  Now print it again, but this time unwrap the optional variable using the `'!'`. What's different about the two lines you printed?
  */
-
+var mystring: String? = "hiii"
+print(mystring)
+print(mystring!)
 
 /*:
  - Experiment:
  Try setting an optional `String` variable to a non-optional `String` variable. What happens? What can you do to prevent the compiler from throwing an error?
  */
+var thisStr = ""
+thisStr = mystring!
 
 
 /*:
@@ -106,7 +114,7 @@ print("\(myOptionalDouble!)")
   The code below uses a conditional unwrap on `gravityConstant`. This creates a new variable `unwrapped`, but only if `gravityConstant` is *not* nil. If you option click on the variable `unwrapped` you will notice that it is a `Double` not a `Double?`
 */
 
-let gravityConstant: Double? = 9.8
+let gravityConstant: Double? = nil
 
 if let unwrapped = gravityConstant {
     // unwrapped exists in this block, and is number unwrapped.
@@ -121,19 +129,27 @@ if let unwrapped = gravityConstant {
  - Experiment:
  Try changing `gravityConstant` to nil. What happens?
  */
-
+//gravityConstant = nil
 
 /*:
  - Experiment:
  Create an array with containing elements of any type of your choice. Try experimenting with the array methods `'first'` and `'last'` to find out what they do. You'll see that both return optional values. Print out the values of first and last by using conditional unwrapping.
  */
+var myarray = [1,2,34]
+myarray.last
+myarray.first
 
-
+if let first = myarray.first ,let last = myarray.last {
+    
+    print(first,last)
+}
 /*:
  - Experiment:
  Using the same array, experiment with the array method `'indexOf'` and find out what it does. Print out the value using conditional unwrapping.
  */
-
+if let ele = myarray.firstIndex(of: 2) {
+    print(ele)
+}
 
 /*:
  - Callout(Challenge):
@@ -150,3 +166,13 @@ if let unwrapped = gravityConstant {
     Try printing a car's price using a name that doesn't exist.
 */
 //: [Next](@next)
+
+var cars = ["Mazda3": 50000, "CRV": 60000, "Hummer": 100000]
+if  let price1 = cars["Mazda3"], let price2 = cars["CRV"], let price3 = cars["Hummer"]  {
+    
+    print(price1,price2,price3)
+
+}
+if let price4 = cars["some"] {
+    print(price4)
+}

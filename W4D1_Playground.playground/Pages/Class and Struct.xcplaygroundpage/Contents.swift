@@ -12,8 +12,9 @@
  */
 class ShapeClass {
     var numberOfSides = 0
+    var name = "shape"
     func description() -> String {
-        return "A shape with \(numberOfSides) sides."
+        return "A shape namedn\(name) with \(numberOfSides) sides."
     }
 }
 /*:
@@ -36,7 +37,10 @@ struct ShapeStruct {
  - Experiment:
  Try creating an instance of the ShapeClass. We can do this by writing the class name then putting parentheses '()' after the class name. Assign it to a declared variable and try setting the variables 'numberofSides' and 'name' and calling the 'description' method.
  */
-
+let myShape = ShapeClass()
+myShape.name = "tri"
+myShape.numberOfSides = 3
+myShape.description()
 
 /*:
  Our ShapeClass is looking good but it is missing something important. We need an initializer to set up the class when an instance is created. We are going to create another class very similar to ShapeClass but this time, we will add the initializer.
@@ -50,6 +54,11 @@ class NamedShapeClass {
         self.name = name
     }
     
+    init(name: String, numberOfSides: Int) {
+        self.name = name
+        self.numberOfSides = numberOfSides
+    }
+    
     func description() -> String {
         return "A shape with \(numberOfSides) sides."
     }
@@ -59,7 +68,8 @@ class NamedShapeClass {
  - Experiment:
  Add another initializer to our 'NamedShapeClass'. Have this initializer take in 'name' and 'numberOfSides' as its parameters. Then test it out by creating an instance of 'NamedShapeClass'.
  */
-
+var square = NamedShapeClass.init(name: "rect", numberOfSides: 4)
+square.description()
 
 /*:
  - Callout(Challenge):
@@ -73,7 +83,26 @@ class NamedShapeClass {
 
 class Square : NamedShapeClass {
     
+    var length: Int
+    init(name: String, length:Int) {
+        self.length = length
+        super.init(name: name)
+
+    }
+    
+    func area() -> Int {
+        return self.length * self.length
+    }
+    override func description() -> String {
+        return "\(name) has 4 side ,and each side is \(length)"
+    }
+    
 }
+
+var mysq = Square.init(name: "SSS", length: 10)
+
+mysq.area()
+mysq.description()
 
 /*:
  - Callout(Challenge):
@@ -90,9 +119,34 @@ class Square : NamedShapeClass {
  - Add an instance of Toyota called toyota. Initialize it.
  - Add the drive() method to make sure it prints out "Prius"
  */
+class Car {
+    
+    var model: String
+    
+    init(model: String) {
+        self.model = model
+    }
+    
+    func drive() {
+        
+        print(self.model)
+        
+    }
+}
 
+class Toyota: Car {
+    
+    init() {
+        super.init(model:"Prius")
+    }
+    
+}
 
+var nissan = Car.init(model:"Rogue")
+var toyota = Toyota.init()
 
+nissan.drive()
+toyota.drive()
 /*:
  - Callout(Challenge):
  Earlier, we mentioned that classes are passed by reference and structs are passed by value. Let's try to clarify this with an example.
@@ -102,27 +156,39 @@ First, create a Person class with a name property and a custom initializer that 
 Now create the same Person class but convert it to a struct. Uncomment 'Section B'. What do think will happen? What are the results?
 */
 // Implement Person class under here!
+class Person {
+    
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
 
 
 // Section A
-//var firstPersonObject = Person(name: "Joe")
-//var secondPersonObject = firstPersonObject
-//secondPersonObject.name = "Jane"
-//
-//print(firstPersonObject.name)
-//print(secondPersonObject.name)
+var firstPersonObject = Person(name: "Joe")
+var secondPersonObject = firstPersonObject
+secondPersonObject.name = "Jane"
+
+print(firstPersonObject.name)
+print(secondPersonObject.name)
 
 
 // Implement Person struct under here!
+struct Person2 {
+    
+    var name: String
+}
 
 
 // Section B
-//var firstPersonStruct = Person(name: "Joe")
-//var secondPersonStruct = firstPersonStruct
-//secondPersonStruct.name = "Jane"
-//
-//print(firstPersonStruct.name)
-//print(secondPersonStruct.name)
+var firstPersonStruct = Person2(name: "Joe")
+var secondPersonStruct = firstPersonStruct
+secondPersonStruct.name = "Jane"
+
+print(firstPersonStruct.name)
+print(secondPersonStruct.name)
 
 
 //: [Next](@next)

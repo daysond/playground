@@ -29,20 +29,31 @@ for i in 2...5 {
  - Experiment:
  What's the difference between `2...5` vs `2..<5`?
  */
-
+// 2 3 4 5
+//2 3 4
 
 /*:
  - Experiment:
   Use a ranged for loop to search through the 'pets' array above for the word 'pig' and print out its index.
  */
-
+for i in 0..<pets.count {
+    
+    if pets[i] == "pig" {
+        print(i)
+    }
+}
 
 /*:
  - Experiment:
  Create an array of random numbers of your choosing then make a for loop that adds 1 to each number.
  */
-
-
+var myarr = [25,67,34,6,23,1,89]
+for i in 0..<myarr.count {
+    
+    myarr[i] = myarr[i] + 1
+    
+}
+print(myarr)
 /*:
  - Experiment:
  Take a look at the example below. Modify the code so that it searches for both the largest and smallest number. Then print out the result.
@@ -66,14 +77,31 @@ for (_, numbers) in interestingNumbers {
     }
 }
 print(largest)
-
-
+var smallest = 99
+for (_, numbers) in interestingNumbers {
+    for number in numbers {
+        if number > largest {
+            largest = number
+        }
+        if number < smallest {
+            smallest = number
+        }
+    }
+}
+print(smallest)
 /*:
  - Callout(Challenge):
  Given a number `N`, from 0 to `N`, add up all the odd numbers and print out the result.
  ie: N = 5, 1+3+5 = 9
  */
-
+var sum = 0
+for i in 0...5 {
+    
+    if i%2 == 1 {
+        sum = sum + i
+    }
+    print(sum)
+}
 
 /*:
  - Callout(Challenge):
@@ -89,5 +117,32 @@ print(largest)
  */
 
 let numberArray = [1, 4, 5, 5, 5, 3, 2, 1, 4, 2, 2, 2, 1]
+var count1 = 0
+var count2 = 0
+var count3 = 0
+var count4 = 0
+var count5 = 0
+
+for i in numberArray {
+    
+    switch i {
+    case 1:
+        count1 = count1 + 1
+    case 2:
+        count2 = count2 + 1
+    case 3:
+        count3 = count3 + 1
+    case 4:
+        count4 = count4 + 1
+    case 5:
+        count5 = count5 + 1
+    default:
+        break
+    }
+
+    
+}
+
+
 
 //: [Next](@next)

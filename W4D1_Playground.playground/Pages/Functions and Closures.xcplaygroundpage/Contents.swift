@@ -15,6 +15,25 @@
 func sayHello(){
     print("Hello")
 }
+
+func fib(n: Int) -> (Int) {
+    
+    if n == 1 {
+        return 1
+    }
+    
+    if n == 2 {
+        return 2
+    }
+    
+    else {
+        
+        return fib(n: n-1) + fib(n: n-2)
+        
+    }
+}
+
+fib(n: 25)
 /*:
  - Callout(Structure): This function takes in a single parameter and does not return any values
  
@@ -42,22 +61,49 @@ func sayHello(toPerson: String) -> String{
  - Experiment:
  Try calling all of the functions above. They all have the same function name, but the compiler doesn't complain. Can you think of why this might be?
  */
+//sayHello(toPerson: "me")
+//it compalins
 
 /*:
  - Experiment:
  Try creating your own function that accepts two parameters of any type you choose. Have the function print out the two parameters and test your function.
  */
+func printSomething(first:Int, second: String) {
+    
+    print("\(first): \(second)")
+    
+}
+
+printSomething(first: 1, second: "one")
+
 
 /*:
  - Callout(Challenge):
  Create four separate functions to add, subtract, multiple, and divide with two parameters given to it and returns a number result. Try testing each one afterwards.
  
  */
+func add(lhs:Int, rhs:Int) -> (Int) {
+    
+    return lhs + rhs
+    
+}
+
+add(lhs: 1, rhs: 2)
+
 
 /*:
  - Callout(Challenge):
  Create your own 'reverse' function that takes in an array of Int, reverses the order of the array, and returns the newly reversed array of Int. The array class has its own 'reverse' method, but do not use it for this challenge.
  */
+var array = [1,2,3,4,5]
+var reversed: [Int] = []
+var count = array.count
+for _ in 0..<array.count {
+    reversed.append(array.removeLast())
+}
+
+print(reversed)
+
 
 /*:
  ## Closures
@@ -117,19 +163,53 @@ var sayHelloClosureWithReturn = { (name: String) -> String in
  - Experiment:
  Try calling all of the closures above. What do you notice that is different from calling a function?
  */
-
+sayHelloClosure()
+sayHelloClosureToPerson("hello")
+var str = sayHelloClosureWithReturn("hello can you hear me")
 /*:
  - Experiment:
  Try creating your own closure that accepts two parameters of any type you choose. Have the closure print out the two parameters and test your closure.
  */
+var someClosure = { (singer: String, song: String) -> String in
+    
+    return "\(song) by \(singer)"
+    
+}
 
+str = someClosure("Maroon 5", "Closure")
+print(str)
 /*:
  - Experiment:
  Declare a variable with an explicit closure type: `(String) -> (String)`. This closure type says it takes one parameter of type String and returns a variable of type String.
  */
+var someVar = {(somestr: String) -> String in
+    return "\(somestr)!!"
+}
+
 
 /*:
  - Callout(Challenge):
  Create a closure with at least two parameters of your choice and decide whether or not it returns anything. Then create a function that takes in your closure as a parameter and one additional parameter of your choice.
  */
 //: [Next](@next)
+var anotherOne = { (song: String, singer: String) -> String? in
+    
+    if song == "Clouser" {
+        return "\(song) by \(singer)"
+    } else {
+        return nil
+    }
+    
+}
+
+func printThis(releaseYear: Int, anotherRROne:@escaping (_ song: String,_ singer: String) -> String?) {
+    if let result = anotherRROne("Clouser", "blah") {
+        print(result);
+    }
+    print("\(String(describing: anotherRROne))  year: \(releaseYear)")
+
+
+}
+
+printThis(releaseYear: 5, anotherRROne: anotherOne)
+
